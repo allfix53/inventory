@@ -4,6 +4,8 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import debug from 'debug';
 import api from './api';
+import product from './api/product'
+
 import db from './datasource';
 
 import productList from './product.json';
@@ -30,7 +32,11 @@ app.use((req, res, next) => {
     next()
   }
 })
+
+// Add souting API endpoint
 app.use('/', api());
+app.use('/products', product())
+
 app.server.listen(process.env.PORT || 8080);
 log(`Started on port ${app.server.address().port}`);
 
