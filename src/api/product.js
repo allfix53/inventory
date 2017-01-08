@@ -1,9 +1,8 @@
-import Router from 'express';
+import express from 'express';
 import db from './../datasource';
 
 export default () => {
-  const router = Router();
-  
+  const router = express();
   // GET / = get list all product
   router.get('/', (req, res) => {
     db.Product.find({}, (err, products) => {
@@ -14,7 +13,7 @@ export default () => {
         res.status(200);
         res.json(products);
       }
-    })
+    });
   });
 
   // GET /:id get product by id
@@ -27,8 +26,8 @@ export default () => {
         res.status(200);
         res.json(product);
       }
-    })
-  })
+    });
+  });
 
   return router;
 };

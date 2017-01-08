@@ -1,8 +1,8 @@
-import Router from 'express';
+import express from 'express';
 import db from './../datasource';
 
 export default () => {
-  const router = Router();
+  const router = express();
 
   // GET / = get list all coupons
   router.get('/', (req, res) => {
@@ -14,7 +14,7 @@ export default () => {
         res.status(200);
         res.json(coupons);
       }
-    })
+    });
   });
 
   // GET / = get coupon by id
@@ -27,7 +27,7 @@ export default () => {
         res.status(200);
         res.json(coupon);
       }
-    })
+    });
   });
 
   return router;

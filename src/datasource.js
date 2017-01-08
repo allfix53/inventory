@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 mongoose.connect('mongodb://localhost/ss-order');
 
@@ -7,16 +7,16 @@ const coupon = {
   validfrom: Date,
   validto: Date,
   value: String,
-  limit: Number
-}
+  limit: Number,
+};
 
 const product = {
   name: String,
   price: Number,
-  qty: Number
-}
+  qty: Number,
+};
 
-const Coupon = mongoose.model('Coupon',  coupon);
+const Coupon = mongoose.model('Coupon', coupon);
 const Product = mongoose.model('Product', product);
 
-export default {Coupon, Product}
+export default { Coupon, Product };
