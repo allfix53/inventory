@@ -19,9 +19,8 @@ const app = express();
 app.server = http.createServer(app);
 
 app.use(cors());
-app.use(bodyParser.urlencoded({
-  extended: true,
-}));
+app.use(bodyParser.json());
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   if (typeof req.headers.secretkey !== 'string' && req.headers.secretkey !== 'x-om-telolet-om') {

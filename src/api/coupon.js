@@ -1,5 +1,9 @@
 import express from 'express';
 import db from './../datasource';
+import debug from 'debug';
+
+const error = debug('app:error');
+const log = debug('app:log');
 
 export default () => {
   const router = express();
@@ -55,6 +59,32 @@ export default () => {
       }
     });
   });
+
+  // POST /reedem reduce coupon limit
+  router.post('/reedem', (req, res) => {
+    db.Coupon.findOne({code: req.body.code}, (err, coupon) => {
+      if (err) {
+        res.status(500);
+        res.end();
+      }
+      if (coupon == null) {
+        res.status(200);
+        res.json({ valid: false, message: "invalid coupon code" });
+      } else {
+        coupon.limit = coupon.limit-1;
+        coupon.save((err, updatedCouponLimit) => {
+          if (err) {
+            res.status(500);
+            res.json('Failed to redeem code');
+          }
+          res.json({
+            limit: updatedCouponLimit.limit,
+            message: 'succeed'
+          });
+        })
+      }
+    })
+  })
 
   return router;
 };
