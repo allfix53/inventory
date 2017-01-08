@@ -1,0 +1,16 @@
+[
+  {
+    "code": "kodekuponpersen",
+    "validfrom": "2017-01-01",
+    "validto": "2017-01-31",
+    "value": "10%",
+    "limit": 10
+  },
+  {
+    "code": "kodekuponvalue",
+    "validfrom": "2017-01-01",
+    "validto": "2017-01-31",
+    "value": "10000",
+    "limit": 100
+  }
+]

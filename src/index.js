@@ -4,6 +4,10 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import debug from 'debug';
 import api from './api';
+import db from './datasource';
+
+import productList from './product.json';
+import couponList from './coupon.json';
 
 const error = debug('app:error');
 const log = debug('app:log');
@@ -29,5 +33,27 @@ app.use((req, res, next) => {
 app.use('/', api());
 app.server.listen(process.env.PORT || 8080);
 log(`Started on port ${app.server.address().port}`);
+
+// Re-create force Coupons
+db.Coupon.remove({}, (err, result) => {
+  if (err) error(err)
+  else {
+    db.Coupon.create(couponList, (err, result) => {
+      if(err) error(err)
+      else log('couponList created')
+    })
+  }
+})
+
+// Re-create force Products
+db.Product.remove({}, (err, result) => {
+  if (err) error(err)
+  else {
+    db.Product.create(productList, (err, result) => {
+      if (err) error(err)
+      else log('productList created')
+    })
+  }
+})
 
 export default app;
