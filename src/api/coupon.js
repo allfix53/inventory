@@ -39,7 +39,7 @@ export default () => {
       } 
       if (coupon == null) {
         res.status(200);
-        res.json({ valid: false });
+        res.json({ valid: false, message: "invalid coupon code" });
       } else {
         // is valid code? is expired? is available limit?
         if (coupon.limit < 1){
