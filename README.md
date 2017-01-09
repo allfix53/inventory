@@ -7,6 +7,7 @@ expressJs - mongo
 
 **collections**
 ***coupon***
+
 1. code: kodu kupon yang bisa di apply oleh customer
 2. validFrom: batas awal coupon dapat digunakan
 3. validTo: batas akhir coupon dapat digunakan
@@ -14,6 +15,7 @@ expressJs - mongo
 5. limit: jumlah maksimum yang dapat di apply
 
 ***product***
+
 1. name: nama product
 2. price: harga satuan
 3. qty: ready stock product
