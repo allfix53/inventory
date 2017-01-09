@@ -41,26 +41,29 @@ app.use('/coupons', coupon());
 app.server.listen(process.env.PORT || 8080);
 log(`Started on port ${app.server.address().port}`);
 
-// Re-create force Coupons
-db.Coupon.remove({}, (err) => {
-  if (err) error(err);
-  else {
-    db.Coupon.create(couponList, (errCreateCoupon) => {
-      if (errCreateCoupon) error(errCreateCoupon);
-      else log('couponList created');
-    });
-  }
-});
+const forceData = false;
+if (forceData) {
+  // Re-create force Coupons
+  db.Coupon.remove({}, (err) => {
+    if (err) error(err);
+    else {
+      db.Coupon.create(couponList, (errCreateCoupon) => {
+        if (errCreateCoupon) error(errCreateCoupon);
+        else log('couponList created');
+      });
+    }
+  });
 
-// Re-create force Products
-db.Product.remove({}, (err) => {
-  if (err) error(err);
-  else {
-    db.Product.create(productList, (err) => {
-      if (err) error(err);
-      else log('productList created');
-    });
-  }
-});
+  // Re-create force Products
+  db.Product.remove({}, (err) => {
+    if (err) error(err);
+    else {
+      db.Product.create(productList, (err) => {
+        if (err) error(err);
+        else log('productList created');
+      });
+    }
+  });
+}
 
 export default app;
